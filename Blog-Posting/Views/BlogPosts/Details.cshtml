@@ -1,74 +1,55 @@
-﻿@model Blog_Posting.BlogPost
+﻿@model Blog_Posting.Models.BlogPost
 
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
 
-<div>
-    <h4>BlogPost</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Created)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Updated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Updated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Slug)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Slug)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Body)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MediaUrl)
-        </dt>
-
-        <dd>
-            <img src="@Html.DisplayFor(model => model.MediaUrl)"/>
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Published)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Published)
-        </dd>
-
-    </dl>
+<div class="agile-banner">
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<!-- //banner -->
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li class="active">Post</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<div class="container">
+    <div class="banner-btm-agile">
+        <!-- //btm-wthree-left -->
+        <div class="col-md-9 btm-wthree-left">
+            <div class="single-left">
+                <div class="single-left1">
+                    @if (Model.MediaUrl != null)
+                    {
+                        <img class="img-responsive" src="@Model.MediaUrl" alt="">
+                    }
+
+                    <h3> @Html.DisplayFor(model => model.Title)</h3>
+                    <ul>
+                        <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@Html.DisplayFor(model => model.Created)</li>
+                    </ul>
+                    <h4>
+                        @Html.Raw(Model.Body)
+                    </h4>
+
+                    <p>
+                        @if (User.Identity.IsAuthenticated && ((User.IsInRole("Admin")) || (User.IsInRole("Moderator"))))
+                        {
+                            <a class="agileits w3layouts" href="@Url.Action("Edit","BlogPosts",new {id=Model.Id})">Edit</a>
+                            <a class="agileits w3layouts" href="@Url.Action("Index","BlogPosts")">Back to MyList</a>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //btm-wthree-right -->
+    <div class="clearfix"></div>
+</div>
+

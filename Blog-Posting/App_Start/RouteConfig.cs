@@ -12,6 +12,15 @@ namespace Blog_Posting
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+                name: "NewSlug",
+                url: "Blog/{slug}",
+                defaults: new
+                {
+                    controller = "BlogPosts",
+                    action = "DetailSlug",
+                    slug = UrlParameter.Optional
+                });
 
             routes.MapRoute(
                 name: "Default",

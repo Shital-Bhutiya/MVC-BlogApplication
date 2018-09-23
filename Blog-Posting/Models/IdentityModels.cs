@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace Blog_Posting.Models
         public string DispalyName { get; set; }
 
         public virtual ICollection<Comment> BlogComments { get; set; }
+        public string DisplayName { get; internal set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
