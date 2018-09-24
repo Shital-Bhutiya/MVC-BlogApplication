@@ -118,3 +118,7 @@ C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.csproj.CoreCompil
 C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.csproj.CopyComplete
 C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.dll
 C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.pdb
+C:\C#Projects\Blog-Posting\Blog-Posting\bin\PagedList.dll
+C:\C#Projects\Blog-Posting\Blog-Posting\bin\PagedList.Mvc.dll
+C:\C#Projects\Blog-Posting\Blog-Posting\bin\PagedList.xml
+C:\C#Projects\Blog-Posting\Blog-Posting\bin\PagedList.Mvc.xml

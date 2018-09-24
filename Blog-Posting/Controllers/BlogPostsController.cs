@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using Blog_Posting;
 using Blog_Posting.Helpers;
 using Blog_Posting.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Blog_Posting.Controllers
 {
@@ -19,10 +21,13 @@ namespace Blog_Posting.Controllers
 
         // GET: BlogPosts
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            int pageSize = 4; // display three blog posts at a time on this page
+            int pageNumber = (page ?? 1);
+
             var model = new BlogIndexViewModel();
-            model.AllPosts = db.BlogPosts.ToList();
+            model.AllPosts = db.BlogPosts.OrderBy(p => p.Id).ToPagedList(pageNumber,pageSize);
             model.RecentPosts = db.BlogPosts.OrderByDescending(p => p.Created).Take(5).ToList();
 
             return View(model);

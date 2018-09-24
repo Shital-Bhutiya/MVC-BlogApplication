@@ -1,7 +1,10 @@
-﻿@model Blog_Posting.Models.BlogIndexViewModel
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model Blog_Posting.Models.BlogIndexViewModel
 
 @{
     ViewBag.Title = "Index";
+    var pagedList = (IPagedList)Model.AllPosts;
 }
 
 <div class="agile-banner">
@@ -96,12 +99,21 @@
                             <h4><a href="@Url.Action("DetailSlug","BlogPosts",new {slug = item.Slug  })">@item.Title</a></h4>
                             <h5><i class="fa fa-calendar" aria-hidden="true"></i>@item.Created.Date</h5>
                         </div>
+
                         <div class="clearfix"> </div>
                     </div>
                 }
+
             </div>
+
         </div>
+
         <!-- //btm-wthree-right -->
         <div class="clearfix"></div>
+        <div>
+            Page @(pagedList.PageCount < pagedList.PageNumber ? 0 : pagedList.PageNumber) of @pagedList.PageCount
+            @Html.PagedListPager(pagedList, page => Url.Action("Index", new { page}))
+        </div>
     </div>
 </div>
+
