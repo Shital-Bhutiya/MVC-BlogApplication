@@ -32,7 +32,7 @@
                     <h3> @Html.DisplayFor(model => model.Title)</h3>
                     <ul>
                         <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
-                        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@Html.DisplayFor(model => model.Created.ToString("dd/MM/yyyy HH:mm"))</li>
+                        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@Model.Created.ToString("dd/MM/yyyy HH:mm")</li>
                     </ul>
                     <h4>
                         @Html.Raw(Model.Body)
