@@ -9,61 +9,40 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Author.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BlogPost.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Updated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateReason)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BlogPost.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdateReason)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="container">
+        <div class="banner-btm-agile">
+            <!-- //btm-wthree-left -->
+            <div class="col-md-9 btm-wthree-left">
+                <div class="single-left">
+                    <div class="comments">
+                        <h3>Our Recent Comments</h3>
+                        @foreach (var item in Model)
+                        {
+                            <div class="comments-grids">
+                                <div class="comments-grid">
 
-</table>
+                                    <div class="comments-grid-right">
+                                        <h4><a href="#">@item.Author.FirstName</a></h4>
+                                        <ul>
+                                            <li>@item.Created.ToString()</li>
+                                        </ul>
+                                        <p>@item.Body</p>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </div>
+                        }
+                    </div>   
+                    </div>
+
+            </div>
+            <!-- //btm-wthree-left -->
+            <!-- btm-wthree-right -->
+
+            <div class="clearfix"></div>
+        </div>
+    </div>

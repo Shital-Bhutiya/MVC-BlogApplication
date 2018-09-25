@@ -12,7 +12,7 @@
 <div class="breadcrumbs">
     <div class="container">
         <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
             <li class="active">Post</li>
         </ol>
     </div>
@@ -32,7 +32,7 @@
                     <h3> @Html.DisplayFor(model => model.Title)</h3>
                     <ul>
                         <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
-                        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@Html.DisplayFor(model => model.Created)</li>
+                        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@Html.DisplayFor(model => model.Created.ToString("dd/MM/yyyy HH:mm"))</li>
                     </ul>
                     <h4>
                         @Html.Raw(Model.Body)
@@ -41,15 +41,36 @@
                     <p>
                         @if (User.Identity.IsAuthenticated && ((User.IsInRole("Admin")) || (User.IsInRole("Moderator"))))
                         {
-                            <a class="agileits w3layouts" href="@Url.Action("Edit","BlogPosts",new {id=Model.Id})">Edit</a>
-                            <a class="agileits w3layouts" href="@Url.Action("Index","BlogPosts")">Back to MyList</a>
+                            <a class="agileits w3layouts" href="@Url.Action("Edit", "BlogPosts", new { id = Model.Id })">Edit</a>
+                            <a class="agileits w3layouts" href="@Url.Action("Index", "BlogPosts")">Back to MyList</a>
                         }
                     </p>
                 </div>
+                @{ Html.RenderAction("Index", "Comments", new { blogId = Model.Id }); }
+
+                @if (User.Identity.IsAuthenticated)
+                {<div class="leave-coment-form">
+                        <h3>Leave Your Comment</h3>
+
+                        @using (Html.BeginForm("CreateComment", "BlogPosts", FormMethod.Post))
+                        {
+                            <input type="hidden" name="slug" value="@Model.Slug" />
+                            <textarea name="body" placeholder="Your comment here..." required=""></textarea>
+
+                            <div class="w3_single_submit" type="submit" value="Submit">
+                                <input type="submit" value="Submit Comment">
+                            </div>
+                        }
+                    </div>
+
+                }
             </div>
         </div>
     </div>
+
     <!-- //btm-wthree-right -->
     <div class="clearfix"></div>
 </div>
+
+
 

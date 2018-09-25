@@ -16,10 +16,10 @@ namespace Blog_Posting.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
-        public ActionResult Index()
+        public ActionResult Index(int blogId)
         {
-            var comments = db.Comments.Include(c => c.Author).Include(c => c.BlogPost);
-            return View(comments.ToList());
+            var comments = db.Comments.Where(p => p.BlogPostID == blogId).Include(c => c.Author).Include(c => c.BlogPost).ToList();
+            return PartialView(comments);
         }
 
         // GET: Comments/Details/5

@@ -53,7 +53,7 @@
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </h3>
                                 <p>
-                                    Created on  @Html.DisplayFor(modelItem => item.Created.Date)
+                                    Created on  @item.Created.ToString("dd/MM/yyyy HH:mm")
                                 </p>
                                 @if (User.Identity.IsAuthenticated && ((User.IsInRole("Admin")) || (User.IsInRole("Moderator"))))
                                 {
@@ -73,7 +73,7 @@
         <div class="col-md-3 w3agile_blog_left">
             <div class="wthreesearch">
                 <form action="#" method="post">
-                    <input type="search" name="Search" placeholder="Search here" required="">
+                    <input type="search" name="searchString" placeholder="Search here" value="@ViewBag.SearchString">
                     <button type="submit" class="btn btn-default search" aria-label="Left Align">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="agileits_recent_posts_gridr">
                             <h4><a href="@Url.Action("DetailSlug","BlogPosts",new {slug = item.Slug  })">@item.Title</a></h4>
-                            <h5><i class="fa fa-calendar" aria-hidden="true"></i>@item.Created.Date</h5>
+                            <h5><i class="fa fa-calendar" aria-hidden="true"></i>@item.Created.ToString("dd/MM/yyyy HH:mm")</h5>
                         </div>
 
                         <div class="clearfix"> </div>
@@ -112,7 +112,7 @@
         <div class="clearfix"></div>
         <div>
             Page @(pagedList.PageCount < pagedList.PageNumber ? 0 : pagedList.PageNumber) of @pagedList.PageCount
-            @Html.PagedListPager(pagedList, page => Url.Action("Index", new { page}))
+            @Html.PagedListPager(pagedList, page => Url.Action("Index", new { page, ViewBag.searchString }))
         </div>
     </div>
 </div>
