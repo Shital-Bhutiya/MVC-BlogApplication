@@ -17,10 +17,9 @@ namespace Blog_Posting.Models
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string DispalyName { get; set; }
 
         public virtual ICollection<Comment> BlogComments { get; set; }
-        public string DisplayName { get; internal set; }
+        public string DisplayName { get;  set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

@@ -6,7 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Blog_Posting.Models;
-
+using Owin.Security.Providers.LinkedIn;
 namespace Blog_Posting
 {
     public partial class Startup
@@ -63,6 +63,7 @@ namespace Blog_Posting
                 ClientId = "969354694165-mb6b5s5b3p1s5ckkiti1mmi02hgfabo1.apps.googleusercontent.com",
                 ClientSecret = "7wvkXxE8DINhsnBdkaUjh4xS"
             });
+            app.UseLinkedInAuthentication("77q3n75cb8gkxb", "rm8Q2vT7CApgRsCo");
         }
     }
 }
