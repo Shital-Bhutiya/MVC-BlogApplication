@@ -50,18 +50,21 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {<div class="leave-coment-form">
-                        <h3>Leave Your Comment</h3>
+    <h3>Leave Your Comment</h3>
 
-                        @using (Html.BeginForm("CreateComment", "BlogPosts", FormMethod.Post))
-                        {
-                            <input type="hidden" name="slug" value="@Model.Slug" />
-                            <textarea name="body" placeholder="Your comment here..." required=""></textarea>
-
-                            <div class="w3_single_submit" type="submit" value="Submit">
-                                <input type="submit" value="Submit Comment">
-                            </div>
-                        }
-                    </div>
+    @using (Html.BeginForm("DetailSlug", "BlogPosts", FormMethod.Post))
+    {
+        <input type="hidden" name="slug" value="@Model.Slug" />
+        <textarea name="body" placeholder="Your comment here..."></textarea>
+        if (ViewBag.ErrorMessage != null)
+        {
+            <span>@ViewBag.ErrorMessage</span>
+        }
+        <div class="w3_single_submit" type="submit" value="Submit">
+            <input type="submit" value="Submit Comment">
+        </div>
+    }
+</div>
 
                 }
             </div>

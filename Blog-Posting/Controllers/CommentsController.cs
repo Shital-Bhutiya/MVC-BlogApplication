@@ -11,6 +11,7 @@ using Blog_Posting.Models;
 
 namespace Blog_Posting.Controllers
 {
+    [RequireHttps]
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

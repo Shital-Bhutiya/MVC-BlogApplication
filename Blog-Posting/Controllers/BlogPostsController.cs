@@ -16,6 +16,7 @@ using PagedList.Mvc;
 
 namespace Blog_Posting.Controllers
 {
+    [RequireHttps]
     public class BlogPostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -79,7 +80,34 @@ namespace Blog_Posting.Controllers
             return View("Details", blogPost);
         }
 
-
+        [HttpPost]
+        public ActionResult DetailSlug(string slug, string body)
+        {
+            if (slug == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var blogPost = db.BlogPosts
+               .Where(p => p.Slug == slug)
+               .FirstOrDefault();
+            if (blogPost == null)
+            {
+                return HttpNotFound();
+            }
+            if (string.IsNullOrWhiteSpace(body))
+            {
+                ViewBag.ErrorMessage = "Comment is required";
+                return View("Details", blogPost);
+            }
+            var comment = new Comment();
+            comment.AuthorId = User.Identity.GetUserId();
+            comment.BlogPostID = blogPost.Id;
+            comment.Created = DateTime.Now;
+            comment.Body = body;
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return RedirectToAction("DetailSlug", new { slug = slug });
+        }
         // GET: BlogPosts/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
@@ -224,6 +252,11 @@ namespace Blog_Posting.Controllers
             if (blogPost == null)
             {
                 return HttpNotFound();
+            }
+            if (string.IsNullOrWhiteSpace(body))
+            {
+                TempData["ErrorMessage"] = "Comment is required";
+                return RedirectToAction("DetailsSlug", new { slug = slug });
             }
             var comment = new Comment();
             comment.AuthorId = User.Identity.GetUserId();
