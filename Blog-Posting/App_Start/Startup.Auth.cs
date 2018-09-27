@@ -64,6 +64,7 @@ namespace Blog_Posting
                 ClientSecret = "7wvkXxE8DINhsnBdkaUjh4xS"
             });
             app.UseLinkedInAuthentication("77q3n75cb8gkxb", "rm8Q2vT7CApgRsCo");
+           
         }
     }
 }

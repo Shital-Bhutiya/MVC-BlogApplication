@@ -392,6 +392,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Helpers\ImageUploadValidator.cs" />
     <Compile Include="Helpers\StringUtilities.cs" />
     <Compile Include="Migrations\Configuration.cs" />

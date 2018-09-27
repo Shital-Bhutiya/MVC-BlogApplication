@@ -8,6 +8,12 @@ namespace Blog_Posting.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string DisplayName { get; set; }
     }
 
     public class ExternalLoginListViewModel
