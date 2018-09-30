@@ -29,17 +29,18 @@ namespace Blog_Posting.Controllers
             int pageNumber = (page ?? 1);
 
             var model = new BlogIndexViewModel();
-           var postQuery = db.BlogPosts.OrderBy(p => p.Created).AsQueryable();
+            var postQuery = db.BlogPosts.OrderBy(p => p.Created).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(searchString))
             {
-                postQuery= postQuery
+                postQuery = postQuery
                     .Where(p => p.Title.Contains(searchString) ||
                                 p.Body.Contains(searchString) ||
                                 p.Slug.Contains(searchString) ||
                                 p.Comments.Any(t => t.Body.Contains(searchString))
                            ).AsQueryable();
             }
+
 
             model.AllPosts = postQuery.ToPagedList(pageNumber, pageSize);
             model.RecentPosts = db.BlogPosts.OrderByDescending(p => p.Created).Take(5).ToList();

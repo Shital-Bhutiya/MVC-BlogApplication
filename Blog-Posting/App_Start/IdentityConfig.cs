@@ -11,15 +11,25 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Blog_Posting.Models;
+using System.Net.Mail;
+using System.Web.Configuration;
 
 namespace Blog_Posting
 {
+
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var personalEmailService = new PersonalEmailService();
+            var mailMessage = new MailMessage(
+               WebConfigurationManager.AppSettings["emailto"],
+               message.Destination
+               );
+            mailMessage.Body = message.Body;
+            mailMessage.Subject = message.Subject;
+            mailMessage.IsBodyHtml = true;
+            return personalEmailService.SendAsync(mailMessage);
         }
     }
 
@@ -40,7 +50,7 @@ namespace Blog_Posting
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -81,7 +91,7 @@ namespace Blog_Posting
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

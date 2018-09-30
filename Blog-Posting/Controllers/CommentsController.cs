@@ -24,7 +24,7 @@ namespace Blog_Posting.Controllers
         }
 
         // GET: Comments/Details/5
-        
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +40,7 @@ namespace Blog_Posting.Controllers
         }
 
         // GET: Comments/Create
-        
+
         public ActionResult Create()
         {
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
@@ -53,7 +53,7 @@ namespace Blog_Posting.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+
         public ActionResult Create([Bind(Include = "Id,PostId,BlogPostID,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment)
         {
             if (ModelState.IsValid)
@@ -81,7 +81,7 @@ namespace Blog_Posting.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             return View(comment);
         }
 
@@ -101,13 +101,13 @@ namespace Blog_Posting.Controllers
                 commentDb.Body = comment.Body;
                 commentDb.UpdateReason = comment.UpdateReason;
                 db.SaveChanges();
-                return RedirectToAction("DetailSlug", "BlogPosts",new { slug = commentDb.BlogPost.Slug});
+                return RedirectToAction("DetailSlug", "BlogPosts", new { slug = commentDb.BlogPost.Slug });
             }
             return View(comment);
         }
 
         // GET: Comments/Delete/5
-        [Authorize(Roles ="Admin,Moderator")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -132,7 +132,7 @@ namespace Blog_Posting.Controllers
             var slug = comment.BlogPost.Slug;
             db.Comments.Remove(comment);
             db.SaveChanges();
-            return RedirectToAction("DetailSlug", "BlogPosts", new { slug});
+            return RedirectToAction("DetailSlug", "BlogPosts", new { slug });
         }
 
         protected override void Dispose(bool disposing)

@@ -1,4 +1,8 @@
-﻿@{
+﻿@model Blog_Posting.Models.EmailModel
+
+@{
+    /**/
+
     ViewBag.Title = "Contact";
 }
 <h2>@ViewBag.Title.</h2>
@@ -26,37 +30,52 @@
             <h3 class="wthree_head">Contact Me</h3>
         </div>
         <div class="agile-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.070907689272!2d144.96551661539212!3d-37.81180807975275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642c99e207041%3A0xc358d059bfe29278!2sRussell+St%2C+Melbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1486986489826" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAh6p6gKhjzS1Jf5DGTHeRyo6sTtMsD8bY&q=11,st.michael.rd.winnipeg,mb,ca&zoom=10" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
-        <div class="w3ls_portfolio_grids w3_agile_mail_grids">
-            <form action="#" method="post">
-                <div class="col-md-6 w3_agile_mail_grid">
-                    <span class="input input--ichiro">
-                        <input class="input__field input__field--ichiro" type="text" id="input-25" placeholder=" " required="" />
-                        <label class="input__label input__label--ichiro" for="input-25">
-                            <span class="input__label-content input__label-content--ichiro">Your Name</span>
-                        </label>
-                    </span>
-                    <span class="input input--ichiro">
-                        <input class="input__field input__field--ichiro" type="email" id="input-26" placeholder=" " required="" />
-                        <label class="input__label input__label--ichiro" for="input-26">
-                            <span class="input__label-content input__label-content--ichiro">Your Email</span>
-                        </label>
-                    </span>
-                    <span class="input input--ichiro">
-                        <input class="input__field input__field--ichiro" type="text" id="input-27" placeholder=" " required="" />
-                        <label class="input__label input__label--ichiro" for="input-27">
-                            <span class="input__label-content input__label-content--ichiro">Your Phone Number</span>
-                        </label>
-                    </span>
-                    <input type="submit" value="Submit">
+
+        @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Send me a message.</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-lg-2">
+                    @Html.LabelFor(m => m.FromName, new { @class = "col-md-2 control-label" })
                 </div>
-                <div class="col-md-6 w3_agile_mail_grid">
-                    <textarea name="Message" placeholder="Your message here..." required=""></textarea>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(m => m.FromName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FromName)
                 </div>
-                <div class="clearfix"> </div>
-            </form>
-        </div>
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Subject, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Subject)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FromEmail, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FromEmail, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FromEmail)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-warning" value="Send" />
+                </div>
+            </div>
+        }
     </div>
     <!-- //mail -->
 </div>

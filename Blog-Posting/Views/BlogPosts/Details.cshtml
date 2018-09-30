@@ -1,7 +1,9 @@
 ﻿@model Blog_Posting.Models.BlogPost
 
 @{
-    ViewBag.Title = "Details";
+                /**/
+
+                ViewBag.Title = "Details";
 }
 <h2>Details</h2>
 
@@ -31,7 +33,6 @@
 
                     <h3> @Html.DisplayFor(model => model.Title)</h3>
                     <ul>
-                        <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
                         <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span>@Model.Created.ToString("dd/MM/yyyy HH:mm")</li>
                     </ul>
                     <h4>
@@ -50,21 +51,21 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {<div class="leave-coment-form">
-    <h3>Leave Your Comment</h3>
+                        <h3>Leave Your Comment</h3>
 
-    @using (Html.BeginForm("DetailSlug", "BlogPosts", FormMethod.Post))
-    {
-        <input type="hidden" name="slug" value="@Model.Slug" />
-        <textarea name="body" placeholder="Your comment here..."></textarea>
-        if (ViewBag.ErrorMessage != null)
-        {
-            <span>@ViewBag.ErrorMessage</span>
-        }
-        <div class="w3_single_submit" type="submit" value="Submit">
-            <input type="submit" value="Submit Comment">
-        </div>
-    }
-</div>
+                        @using (Html.BeginForm("DetailSlug", "BlogPosts", FormMethod.Post))
+                        {
+                            <input type="hidden" name="slug" value="@Model.Slug" />
+                            <textarea name="body" placeholder="Your comment here..."></textarea>
+                            if (ViewBag.ErrorMessage != null)
+                            {
+                                <span>@ViewBag.ErrorMessage</span>
+                            }
+                            <div class="w3_single_submit" type="submit" value="Submit">
+                                <input type="submit" value="Submit Comment">
+                            </div>
+                        }
+                    </div>
 
                 }
             </div>

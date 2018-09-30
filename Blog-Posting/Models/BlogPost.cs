@@ -15,7 +15,7 @@ namespace Blog_Posting.Models
             Comments = new List<Comment>();
         }
         public int Id { get; set; }
-        
+
         public DateTimeOffset Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
         [Required(ErrorMessage = "The Title field is required for Post.")]
@@ -24,8 +24,8 @@ namespace Blog_Posting.Models
 
         [AllowHtml]
         public string Body { get; set; }
-        public string  MediaUrl { get; set; }
-        public  bool Published { get; set; }
+        public string MediaUrl { get; set; }
+        public bool Published { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }

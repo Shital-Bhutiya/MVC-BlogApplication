@@ -7,41 +7,40 @@
 <h2>Index</h2>
 
 <div class="container">
-        <div class="banner-btm-agile">
-            <!-- //btm-wthree-left -->
-            <div class="col-md-9 btm-wthree-left">
-                <div class="single-left">
-                    <div class="comments">
-                        <h3>Our Recent Comments</h3>
-                        @foreach (var item in Model)
-                        {
-                            <div class="comments-grids">
-                                <div class="comments-grid">
+    <div class="banner-btm-agile">
+        <!-- //btm-wthree-left -->
+        <div class="col-md-9 btm-wthree-left">
+            <div class="single-left">
+                <div class="comments">
+                    <h3>Our Recent Comments</h3>
+                    @foreach (var item in Model)
+                    {
+                        <div class="comments-grids">
+                            <div class="comments-grid">
 
-                                    <div class="comments-grid-right">
-                                        <h4><a href="#">@item.Author.FirstName</a></h4>
-                                        <ul>
-                                            <li>@item.Created.ToString()</li>
-                                        </ul>
-                                        <p>@item.Body</p>
-                                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || (User.IsInRole("Moderator"))))
-                                        {
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.Id });    
-                                            
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.Id });
-                                        }
-                                    </div>
-                                    <div class="clearfix"> </div>
+                                <div class="comments-grid-right">
+                                    <h4><a href="#">@item.Author.FirstName</a></h4>
+                                    <ul>
+                                        <li>@item.Created.ToString()</li>
+                                    </ul>
+                                    <p>@item.Body</p>
+                                    @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || (User.IsInRole("Moderator"))))
+                                    {
+                                        <a class="agileits w3layouts" href="@Url.Action("Edit","Comments",new {id=item.Id  })">Edit</a>
+                                        <a class="agileits w3layouts" href="@Url.Action("Delete","Comments",new {id=item.Id  })">Delete</a>
+                                    }
                                 </div>
+                                <div class="clearfix"> </div>
                             </div>
-                        }
-                    </div>   
-                    </div>
-
+                        </div>
+                    }
+                </div>
             </div>
-            <!-- //btm-wthree-left -->
-            <!-- btm-wthree-right -->
 
-            <div class="clearfix"></div>
         </div>
+        <!-- //btm-wthree-left -->
+        <!-- btm-wthree-right -->
+
+        <div class="clearfix"></div>
     </div>
+</div>

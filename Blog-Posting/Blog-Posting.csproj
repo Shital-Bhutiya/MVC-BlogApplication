@@ -388,10 +388,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="Models\PersonalEmailService.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Helpers\ImageUploadValidator.cs" />
     <Compile Include="Helpers\StringUtilities.cs" />
@@ -461,6 +463,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="private.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\easing.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />

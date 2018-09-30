@@ -113,7 +113,6 @@ C:\C#Projects\Blog-Posting\Blog-Posting\bin\Microsoft.AI.DependencyCollector.xml
 C:\C#Projects\Blog-Posting\Blog-Posting\bin\Microsoft.AI.WindowsServer.xml
 C:\C#Projects\Blog-Posting\Blog-Posting\bin\Microsoft.AI.Web.xml
 C:\C#Projects\Blog-Posting\Blog-Posting\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.csprojAssemblyReference.cache
 C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.csproj.CoreCompileInputs.cache
 C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.csproj.CopyComplete
 C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.dll
@@ -186,3 +185,4 @@ C:\C#Projects\Blog-Posting\Blog-Posting\bin\PreMailer.Net.dll
 C:\C#Projects\Blog-Posting\Blog-Posting\bin\SgmlReaderDll.dll
 C:\C#Projects\Blog-Posting\Blog-Posting\bin\Thrift.dll
 C:\C#Projects\Blog-Posting\Blog-Posting\bin\CsQuery.xml
+C:\C#Projects\Blog-Posting\Blog-Posting\obj\Debug\Blog-Posting.csprojAssemblyReference.cache
